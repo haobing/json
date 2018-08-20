@@ -1,0 +1,19 @@
+解析文件{"resource_code":[1,2,9]}
+#include<stdio.h>
+#include<stdlib.h>
+#include"cJSON.h"
+
+int main()
+{
+	int i;
+	char buf[]="{\"resource_code\": [1,2,9]}";
+	cJSON * root = cJSON_Parse((const char *)buf);
+	cJSON *tmp = cJSON_GetObjectItem(root,"resource_code");
+	cJSON *chi;
+	int num = cJSON_GetArraySize(tmp);
+	for(i=0; i<num; i++)
+	{
+		chi=cJSON_GetArrayItem(tmp,i);
+		printf("the num=%d\n",chi->valueint);
+	}
+}
